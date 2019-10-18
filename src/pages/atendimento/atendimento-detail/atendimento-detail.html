@@ -1,0 +1,174 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>atendimento-detail</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item>
+
+    <ion-list>
+      {{order.orders[0]?.quantity}}
+      {{order.orders[0]?.product?.title}}
+
+    </ion-list>
+    <ion-list>
+      {{order.orders[1]?.quantity}}
+      {{order.orders[1]?.product?.title}}
+
+    </ion-list>
+    <ion-list>
+      {{order.orders[2]?.quantity}}
+      {{order.orders[2]?.product?.title}}
+
+    </ion-list>
+    <ion-list>
+      {{order.orders[3]?.quantity}}
+      {{order.orders[3]?.product?.title}}
+
+    </ion-list>
+    <ion-list>
+      {{order.orders[4]?.quantity}}
+      {{order.orders[4]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[5]?.quantity}}
+      {{order.orders[5]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[6]?.quantity}}
+      {{order.orders[6]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[7]?.quantity}}
+      {{order.orders[7]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[8]?.quantity}}
+      {{order.orders[8]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[9]?.quantity}}
+      {{order.orders[9]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[10]?.quantity}}
+      {{order.orders[10]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[11]?.quantity}}
+      {{order.orders[11]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[12]?.quantity}}
+      {{order.orders[12]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[13]?.quantity}}
+      {{order.orders[13]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[14]?.quantity}}
+      {{order.orders[14]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[15]?.quantity}}
+      {{order.orders[15]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[16]?.quantity}}
+      {{order.orders[16]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[17]?.quantity}}
+      {{order.orders[17]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[18]?.quantity}}
+      {{order.orders[18]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[19]?.quantity}}
+      {{order.orders[19]?.product?.title}}
+    </ion-list>
+    <ion-list>
+      {{order.orders[20]?.quantity}}
+      {{order.orders[20]?.product?.title}}
+    </ion-list>
+    <ion-list>
+        <b> Número da mesa:
+            {{order.orders[0]?.mesa}}
+            {{order.orders[1]?.mesa}}
+            {{order.orders[2]?.mesa}}
+            {{order.orders[3]?.mesa}}
+            {{order.orders[4]?.mesa}}
+            {{order.orders[5]?.mesa}}
+            {{order.orders[6]?.mesa}}
+            {{order.orders[7]?.mesa}}
+            {{order.orders[8]?.mesa}}
+            {{order.orders[9]?.mesa}}
+            {{order.orders[10]?.mesa}}
+            {{order.orders[11]?.mesa}}
+            {{order.orders[12]?.mesa}}
+            {{order.orders[13]?.mesa}}
+            {{order.orders[14]?.mesa}}
+            {{order.orders[15]?.mesa}}
+            {{order.orders[16]?.mesa}}
+            {{order.orders[17]?.mesa}}
+            {{order.orders[18]?.mesa}}
+            {{order.orders[19]?.mesa}}
+            {{order.orders[20]?.mesa}}
+            {{order.orders[21]?.mesa}}
+            {{order.orders[22]?.mesa}}
+            {{order.orders[23]?.mesa}}
+            {{order.orders[24]?.mesa}}
+        </b> <br/>
+        <b>Observações do pedido:
+            {{order.orders[0]?.obs}}
+          {{order.orders[1]?.obs}}
+          {{order.orders[2]?.obs}}
+          {{order.orders[3]?.obs}}
+          {{order.orders[4]?.obs}}
+          {{order.orders[5]?.obs}}
+          {{order.orders[6]?.obs}}
+          {{order.orders[7]?.obs}}
+          {{order.orders[8]?.obs}}
+          {{order.orders[9]?.obs}}
+          {{order.orders[10]?.obs}}
+          {{order.orders[11]?.obs}}
+          {{order.orders[12]?.obs}}
+          {{order.orders[13]?.obs}}
+          {{order.orders[14]?.obs}}
+          {{order.orders[15]?.obs}}
+          {{order.orders[16]?.obs}}
+          {{order.orders[17]?.obs}}
+          {{order.orders[18]?.obs}}
+          {{order.orders[19]?.obs}}
+          {{order.orders[20]?.obs}}
+          {{order.orders[21]?.obs}}
+          {{order.orders[22]?.obs}}
+          {{order.orders[23]?.obs}}
+          {{order.orders[24]?.obs}}
+          {{order.orders[25]?.obs}}
+
+        </b>
+      </ion-list>
+  </ion-item>
+
+    <ion-grid>
+      <div *ngIf="openOrder(); else pago">
+      <form [formGroup]="form" name="updateOrder" (submit)="finishOrder()">
+        <ion-item hidden>
+          <ion-input type="text" formControlName="pagamento" value="pago"  name="pagamento"  input="completo"></ion-input>
+        </ion-item>
+          <button ion-button large > Finalizar pedido</button>
+      </form>
+    </div>
+    <ng-template #pago>
+        <button ion-button color="light" clear large > Finalizar concluído</button>
+    </ng-template>
+    </ion-grid>
+</ion-content>

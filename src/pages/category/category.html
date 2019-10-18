@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Criar categoria</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+<ion-item *ngFor="let cat of categories" >
+<strong>{{cat.title}} </strong>
+</ion-item>
+<ion-item>
+  <form [formGroup]="form" name="CargetoryFormCreate" (submit)="categorySubmit()">
+    <ion-item>
+      <ion-input type="text" name="title" formControlName="title" placeholder="Título" class="form-control" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" name="description" formControlName="description" placeholder="Descrição" ></ion-input>
+    </ion-item>
+    <ion-item class="file-input-container">
+
+        <!-- file upload -->
+        <input id="files" #myInput name="files" type="file" #files (change)="fileChangeEvent($event)" placeholder="Upload a file..." required />
+            </ion-item>
+
+    <button ion-button class="button-con"  type="submit" [disabled]="!form.valid">Criar Categoria</button>
+
+  </form>
+</ion-item>
+</ion-content>
+
+
+

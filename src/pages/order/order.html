@@ -1,0 +1,79 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>Pedidos da Cozinha</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+  <ion-row>
+      <div ion-col class="counter-center" text-center  (click)="updateOrder()" *ngIf="counter>0; else notShow">
+     <b>{{ counter }} </b>  novo(s) pedido(s)
+        </div>
+    <ng-template ion-col class="counter-center" #notShow>
+     <div ion-col class="counter-center" text-center (click)="update()">
+     Atualizar pedidos
+    </div>
+    </ng-template>
+  </ion-row>
+</ion-item>
+<ion-item>
+  <ion-select placeholder="Status do pedido" [(ngModel)]="searchTerm" (ionChange)="searchTerm$.next($event)">
+    <ion-option  value="aberto">Aberto</ion-option>
+    <ion-option value="completo">Fechado</ion-option>
+  </ion-select>
+</ion-item>
+    <ion-item (click)="navigateToOrder(order._id)" *ngFor="let order of orders" >
+      <div [ngStyle]="{'background-color':order.status === 'aberto' ? 'red' : 'white',
+      'color':order.status === 'aberto' ? 'white' : 'black' }">
+        <ion-list >
+
+            <h2> <b>Pedido:</b>  {{order?.numberOrder}}</h2>
+            <h3>  <b> Mesa: {{order.orders[1]?.mesa}}
+                {{order.orders[2]?.mesa}}
+                {{order.orders[3]?.mesa}}
+                {{order.orders[4]?.mesa}}
+                {{order.orders[5]?.mesa}}
+                {{order.orders[6]?.mesa}}
+                {{order.orders[7]?.mesa}}
+                {{order.orders[8]?.mesa}}
+                {{order.orders[9]?.mesa}}
+                {{order.orders[10]?.mesa}}
+                {{order.orders[11]?.mesa}}
+                {{order.orders[12]?.mesa}}
+                {{order.orders[13]?.mesa}}
+                {{order.orders[14]?.mesa}}
+                {{order.orders[15]?.mesa}}
+                {{order.orders[16]?.mesa}}
+                {{order.orders[17]?.mesa}}
+                {{order.orders[18]?.mesa}}
+                {{order.orders[19]?.mesa}}
+                {{order.orders[20]?.mesa}}
+                {{order.orders[21]?.mesa}}
+                {{order.orders[22]?.mesa}}
+                {{order.orders[23]?.mesa}}
+                {{order.orders[24]?.mesa}}
+
+              </b> <br/></h3>
+
+
+        </ion-list >
+      </div>
+        <!-- <ion-list>
+            <h2>   {{i?.orders[1]?.product.title}}</h2>
+       <h3>  {{i?.orders[1]?.quantity}}</h3>
+
+        </ion-list>
+
+        {{i?.orders[2]?.quantity}}
+        {{i?.orders[2]?.product.title}}
+      {{i?.orders?.quantity}}
+      <h3> {{order?.quantity}}</h3> -->
+
+
+      </ion-item>
+
+
+</ion-content>

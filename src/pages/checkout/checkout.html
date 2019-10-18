@@ -1,0 +1,85 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Finalize Pedido</ion-title>
+  </ion-navbar>
+  <ion-col col-3>
+    <button ion-button type="button" round class="bt-clear" (click)="emptyCart()"
+      [attr.disabled]="itemCount === 0 ? true : null">
+      Limpar pedido
+    </button>
+  </ion-col>
+  <ion-col md-4 class="content-cart">
+
+    <button class="cart-button" ion-button icon-only clear color="dark" [attr.disabled]="itemCount === 0 ? true : null"
+      (click)="checkout()">
+      <ion-icon name="cart">
+        <ion-badge class="cart-badge" class="badge badge-assertive">{{itemCount}}</ion-badge>
+        <span class="total">{{(cart | async).grossTotal | currency:'BRL':true}}</span>
+      </ion-icon>
+
+    </button>
+
+
+    <span class="text--red text--bold js-cart-total"></span>
+  </ion-col>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="row">
+
+
+    <hr />
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let item of cartItems">
+      <h2 style="width: 150px; text-overflow: ellipsis"> <b>{{item.title}}</b></h2>
+      <p style="width: 180px; text-overflow: ellipsis; ">{{item.description}}</p>
+      <p style="width: 180px; text-overflow: ellipsis; ">{{item.sabores[0].title}}</p>
+      <p style="width: 180px; text-overflow: ellipsis; ">{{item.sabores[1]?.title}}</p>
+      <p style="width: 180px; text-overflow: ellipsis; ">{{item.sabores[2]?.title}}</p>
+      <p style="width: 150px; text-overflow: ellipsis; color:#cc1421"> <b>{{item.quantity}} x
+          {{item.price | currency:'BRL':true}} </b></p>
+      <p style="width: 150px; text-overflow: ellipsis; color:#cc1421"> <b>{{item.totalCost | currency:'BRL':true}} </b>
+      </p>
+    </ion-item>
+   
+  </ion-list>
+  <form [formGroup]="form" name="createMoreOrder" (submit)="finishCart()">
+    <ion-label>Nome do cliente</ion-label>
+    <ion-input type="text" name="clientName" formControlName="clientName" placeholder="Nome do cliente"></ion-input>
+    <ion-input type="text" name="totalCart" formControlName="totalCart" [value]="cart.grossTotal" ></ion-input>
+    <ion-item>
+      <ion-label>Numero da mesa</ion-label>
+      <ion-select formControlName="mesa" name="mesa">
+
+        <ion-option value="01">Mesa 01</ion-option>
+        <ion-option value="02">Mesa 02</ion-option>
+        <ion-option value="03">Mesa 03</ion-option>
+        <ion-option value="04">Mesa 04</ion-option>
+        <ion-option value="05">Mesa 05</ion-option>
+        <ion-option value="06">Mesa 06</ion-option>
+        <ion-option value="07">Mesa 07</ion-option>
+        <ion-option value="08">Mesa 08</ion-option>
+
+
+      </ion-select>
+    </ion-item>
+    <ion-label>Valor Total</ion-label>
+
+    <ion-label>Observações</ion-label>
+    <ion-textarea type="text" class="text-obs" name="obs" formControlName="obs" placeholder="Observações">
+    </ion-textarea>
+    <button ion-button outline large> Finalizar pedido</button>
+  </form>
+
+
+  <button ion-button large (click)="pop()">
+    Adicionar mais produtos
+  </button>
+
+
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid class="img-login">
+    <img src="./../../assets/imgs/mister-burguer-login.jpg">
+  </ion-grid>
+  <ion-list class="form-login">
+
+    <ion-item>
+      <ion-label floating>Usuário</ion-label>
+      <ion-input [(ngModel)]="username" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Senha</ion-label>
+      <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+    <button ion-button full class="login-b" (click)="login()">Entrar</button>
+  </ion-list>
+
+
+</ion-content>

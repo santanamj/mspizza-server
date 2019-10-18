@@ -1,0 +1,88 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cadastrar usuário</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="user-role" *ngIf="showRegister(); else notShow">
+  <form [formGroup]="form" (submit)="onRegisterSubmit()">
+
+    <!-- Username Input -->
+    <ion-item class="form-group">
+      <label for="username">Nome do usuário</label>
+      <div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty) || (!usernameValid && form.controls.username.dirty), 'has-success': !form.controls.username.errors && usernameValid}">
+
+        <!-- Validation -->
+        <ul class="help-block">
+          <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">*Obrigatório</li>
+          <li *ngIf="form.controls.username.errors?.minlength && form.controls.username.dirty || form.controls.username.errors?.maxlength && form.controls.username.dirty ">mínimo de 5 e máximo 15 caracteres </li>
+          <li *ngIf="form.controls.username.errors?.validateUsername && form.controls.username.dirty">Não é possível usar caracteres especiais</li>
+          <li *ngIf="usernameMessage">{{ usernameMessage }}</li>
+        </ul>
+        <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Nome do usuário" formControlName="username" (blur)="checkUsername()"  />
+      </div>
+    </ion-item>
+
+    <!-- Email Input -->
+    <ion-item class="form-group">
+      <label for="email">E-mail</label>
+      <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty) || (!emailValid && form.controls.email.dirty), 'has-success': !form.controls.email.errors && emailValid}">
+
+        <!-- Validation -->
+        <ul class="help-block">
+          <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">*obrigatório</li>
+          <li *ngIf="(form.controls.email.errors?.minlength && form.controls.email.dirty || form.controls.email.errors?.maxlength && form.controls.email.dirty ) && form.controls.email.dirty">mínimo de 5 e máximo 30 caracteres</li>
+          <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">E-mail validado</li>
+          <li *ngIf="emailMessage">{{ emailMessage}}</li>
+        </ul>
+        <input type="text" name="email" class="form-control" autocomplete="off" placeholder="*Email" formControlName="email" (blur)="checkEmail()" />
+      </div>
+    </ion-item>
+
+    <!-- Password Input -->
+    <ion-item class="form-group">
+      <label for="password">Senha</label>
+      <div [ngClass]="{'has-error': (form.controls.password.errors && form.controls.password.dirty), 'has-success': !form.controls.password.errors}"></div>
+        <input type="password" name="password" class="form-control" autocomplete="off" placeholder="*Senha" formControlName="password" />
+        <!-- Validation -->
+
+    </ion-item>
+
+    <!-- Confirm Password Input -->
+    <ion-item class="form-group">
+      <label for="confirm">Confirmar senha</label>
+      <div [ngClass]="{'has-error': (form.controls.confirm.errors && form.controls.confirm.dirty) || (form.errors?.matchingPasswords && form.controls.confirm.dirty), 'has-success': !form.controls.confirm.errors && !form.errors?.matchingPasswords}">
+
+        <!-- Validation -->
+        <ul class="help-block">
+          <li *ngIf="form.controls.confirm.errors?.required && form.controls.confirm.dirty">*Obrigatório</li>
+          <li *ngIf="form.errors?.matchingPasswords && form.controls.confirm.dirty">Senhas diferentes</li>
+        </ul>
+        <input type="password" name="confirm" class="form-control" autocomplete="off" placeholder="*Confirmar Senha" formControlName="confirm" />
+      </div>
+    </ion-item>
+    <ion-item>
+        <ion-label>Tipo do usuário</ion-label>
+        <ion-select formControlName="role" name="role">
+        <ion-option [value]="gerente">gerente</ion-option>
+        <ion-option [value]="cozinha">cozinha</ion-option>
+        <ion-option [value]="atendimento">atendimento</ion-option>
+        </ion-select>
+      </ion-item>
+
+    <!-- Submit Input -->
+    <button ion-button [disabled]="!form.valid || processing || !emailValid || !usernameValid" type="submit"   >Criar usuário</button>
+
+  </form>
+</div>
+<ng-template #notShow>
+    <p>
+      Entre como admistrador ou gerente para cadastrar novo usuário.
+    </p>
+  </ng-template>
+</ion-content>

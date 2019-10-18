@@ -1,0 +1,51 @@
+page-shopping-cart {
+  .bar-button-md{
+    font-size: 1.8rem;
+    right: -15px;
+    top: 2px;
+  }
+  .bt-clear{
+    top:-6px;
+  }
+  .cart-button {
+    position: relative;
+    z-index: 100;
+
+    top: -10px;
+    height: 50px;
+
+
+    overflow: visible !important;
+  }
+  .total{
+    position: relative;
+    right: 10px;
+    top: -10px;
+    font-size: 18px;
+  }
+
+  .carts-badge {
+
+    position: absolute;
+    top: 3px;
+      right: 1px;
+    border-radius: 100%;
+  }
+  .badge-md {
+    border-radius: 24px;
+    top: -13px;
+    right: 4px;
+    position: relative;
+    color: #fff;
+    background-color: #664646;
+}
+.item-cart{
+  float: left;
+  position: relative;
+}
+.cart-button{
+float: right;
+left: 15px;
+
+}
+}

@@ -1,0 +1,86 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Adicionar produtos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="add-produtc" *ngIf="showAddProduct(); else notShow">
+    <!-- <ion-item *ngFor="let product of products" >
+    <h3>{{product.title}}</h3>
+    <ion-thumbnail item-start *ngFor="let imgurl of product.url">
+      <img [src]="imgurl.url">
+    </ion-thumbnail>
+  </ion-item> -->
+    <form [formGroup]="form" name="CreateNewProduct" (ngSubmit)="addProduct()">
+      <ion-item>
+
+
+        <ion-input type="text" name="title" id="title" class="form-control" placeholder="Título" autocomplete="off"
+          formControlName="title"></ion-input>
+
+      </ion-item>
+      <ion-item>
+
+
+        <ion-input type="text" name="price" id="price" class="form-control" placeholder="Preço do Produto"
+          autocomplete="off" formControlName="price"></ion-input>
+
+      </ion-item>
+      <ion-item>
+
+
+        <ion-input type="text" name="description" id="description" class="form-control" placeholder="Descrição"
+          autocomplete="off" formControlName="description"></ion-input>
+
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Categoria</ion-label>
+        <ion-select formControlName="category" name="category">
+
+          <ion-option [value]="cat._id" *ngFor="let cat of categories">{{cat.title}}</ion-option>
+
+        </ion-select>
+      </ion-item>
+      
+       
+       
+       <div >
+        <label formArrayName="sabores" *ngFor="let sub of form.controls.sabores.controls; let i = index">
+          <input type="checkbox" (change)="select(i)" [formControlName]="i" ([ngModel])="subproducts[i].checked" >
+          {{subproducts[i].title}}
+        </label>
+      </div>
+    
+     <!-- <label formArrayName="sabores" *ngFor="let product of produtos; let i = index">
+      <input type="checkbox" (change)="select(i)" [formControlName]="i" [ngModel]="product[i].checked">
+      {{product.title}}
+    </label> -->
+    <!-- <ion-item *ngFor="let sub of subproducts; let i = index">
+      <ion-label> {{sub[i].title}}</ion-label>
+      <ion-checkbox [formControlName]="i" [checked]="sub.checked" (ionChange)="selectSabores(i, $event)"> </ion-checkbox>
+    </ion-item> -->
+      <ion-item class="file-input-container">
+
+        <!-- file upload -->
+        <input id="files" #myInput name="files" type="file" multiple #files (change)="fileChangeEvent($event)"
+          placeholder="Upload a file..." required />
+      </ion-item>
+
+      <button ion-button color="secondary" type="submit" full round large [disabled]="!form.valid">
+        Criar produto
+      </button>
+    </form>
+
+
+
+
+
+  </div>
+  <ng-template #notShow>
+    <p>
+      Entre como admistrador ou gerente para adicionar produtos
+    </p>
+  </ng-template>
+</ion-content>

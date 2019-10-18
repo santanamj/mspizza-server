@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>product-detail</ion-title>
+  </ion-navbar>
+  <ion-navbar>
+    <ion-title>Produtos</ion-title>
+  </ion-navbar>
+  <ion-col col-3>
+    <button ion-button type="button" round class="bt-clear"
+        (click)="emptyCart()"
+        [attr.disabled]="itemCount === 0 ? true : null">
+ Limpar pedido
+</button>
+</ion-col>
+<ion-col md-4 class="content-cart">
+
+      <button class="cart-button" ion-button icon-only clear color="dark"
+      [attr.disabled]="itemCount === 0 ? true : null" (click)="checkout()">
+          <ion-icon name="cart">
+            <ion-badge class="cart-badge" class="badge badge-assertive" >{{itemCount}}</ion-badge>
+            <span class="total">{{(cart | async).grossTotal | currency:'BRL':true}}</span>
+          </ion-icon>
+
+      </button>
+
+
+      <span class="text--red text--bold js-cart-total"></span>
+ </ion-col>
+</ion-header>
+
+<ion-content padding>
+  <ion-item >
+      <form [formGroup]="form" name="CreateNewProduct" (ngSubmit)="addProduct()">
+    <div >
+      <ion-item formArrayName="sabores" *ngFor="let sub of form.controls.sabores.controls; let i = index">
+        
+        <ion-checkbox type="checkbox" (ionChange)="select(i)" [formControlName]="i" ([ngModel])="productscar[i].checked" ></ion-checkbox>
+        <ion-label>{{productscar[i].title}}</ion-label>
+      </ion-item>
+    </div>
+  </form>
+
+    <ion-row>
+      <ion-col col-2>
+
+    <ion-icon name="add-circle" class="add" (click)="addProductToCart(product, 1)"></ion-icon>
+     </ion-col>
+
+
+     <ion-col col-2>
+        <ion-icon name="remove-circle"
+        *ngIf="productInCart(product) | async"
+        (click)="removeProductFromCart(product, 1)" class="remove" ></ion-icon>
+
+     </ion-col>
+    </ion-row>
+  </ion-item>
+  <ion-item>
+      <ion-select multiple name="subproduct">
+          <ion-option [ngValue]="null" disabled>Choose your profile</ion-option>
+
+          <ion-option  *ngFor="let subproduct of product.productscar">{{subproduct.title}}</ion-option>
+
+        </ion-select>
+
+
+</ion-item>
+</ion-content>

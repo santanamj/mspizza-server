@@ -1,0 +1,50 @@
+page-checkout {
+  .content-cart{
+    font-size: 1.8rem;
+    right: -15px;
+    top: 2px;
+  }
+  .bt-clear{
+    top:6px;
+    float: left;
+  }
+  .cart-button {
+    position: relative;
+    z-index: 100;
+
+    top: 6px;
+    height: 50px;
+
+
+    overflow: visible !important;
+  }
+  .total{
+    position: relative;
+    right: 10px;
+    top: -10px;
+    font-size: 20px;
+  }
+  .carts-badge {
+    position: absolute;
+    top: 3px;
+    right: 1px;
+    border-radius: 100%;
+    font-size: 20px
+  }
+  .badge-md {
+    border-radius: 24px;
+    top: -13px;
+    right: 4px;
+    position: relative;
+    color: #fff;
+    background-color: #664646;
+}
+textarea.text-input {
+  border: 1px solid;
+  height: 70px;
+}
+.item-cart{
+  float: left;
+  position: relative;
+}
+}

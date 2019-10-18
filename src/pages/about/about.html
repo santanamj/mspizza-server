@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Add
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="add-produtc"  *ngIf="showAdd(); else notShow">
+        <ion-list>
+            <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+              {{p.title}}
+            </button>
+            </ion-list>
+    </div>
+    <ng-template #notShow>
+        <p>
+          Entre como admistrador ou gerente!
+        </p>
+      </ng-template>
+</ion-content>

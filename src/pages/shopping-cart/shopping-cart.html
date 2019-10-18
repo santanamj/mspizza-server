@@ -1,0 +1,31 @@
+<div>
+    <ion-row >
+    <!-- <ion-col col-5>
+        <ion-h5>
+            Sub Total ({{itemCount}} items):
+            <span class="text--red text--bold js-cart-total">{{(cart | async).grossTotal | currency:'BRL':true}}</span>
+          </ion-h5>
+    </ion-col> -->
+    <ion-col col-3>
+        <button ion-button type="button" round class="bt-clear"
+            (click)="emptyCart()"
+            [attr.disabled]="itemCount === 0 ? true : null">
+     Limpar pedido
+    </button>
+    </ion-col>
+    <ion-col md-4>
+
+          <button class="cart-button" ion-button icon-only clear color="dark"
+          [attr.disabled]="itemCount === 0 ? true : null" (click)="checkout()">
+              <ion-icon name="cart">
+                <ion-badge class="cart-badge" class="badge badge-assertive" >{{itemCount}}</ion-badge>
+                <span class="total">{{(cart | async).grossTotal | currency:'BRL':true}}</span>
+              </ion-icon>
+
+          </button>
+
+
+          <span class="text--red text--bold js-cart-total"></span>
+     </ion-col>
+    </ion-row>
+  </div>

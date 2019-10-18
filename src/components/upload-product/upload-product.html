@@ -1,0 +1,23 @@
+
+<ion-content padding>
+
+<div class="file-input-container">
+  <label>
+    <input type="file" id="files" #files ng2FileSelect [uploader]="uploader" multiple />
+    Add Files
+  </label>
+</div>
+
+<h2>Files: {{ uploader?.queue?.length }}</h2>
+
+<ion-list>
+
+    <ion-item *ngFor="let item of uploader.queue">
+      <ion-label>
+        {{ item?.file?.name }}
+      </ion-label>
+      <ion-reorder></ion-reorder>
+    </ion-item>
+
+</ion-list>
+</ion-content>

@@ -1,0 +1,18 @@
+
+<ion-header>
+  <ion-navbar>
+    <ion-title>subproduct</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="productsForm" (ngSubmit)="AddSubproduct()">
+    
+    <!-- <label formArrayName="producst" *ngFor="let title of productsForm.controls['producst'].controls; let i = index">
+      <input type="checkbox" (change)="select(i)" [formControlName]="i" [ngModel]="producst[i].checked" value="producst[i].title">
+      {{producst[i].title}}
+    </label> -->
+  
+    <button>submit</button>
+  </form>
+</ion-content>

@@ -1,0 +1,76 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>atendimento</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<ion-grid>
+
+  <ion-select placeholder="pagamentoAberto" [(ngModel)]="searchTerm" (ionChange)="searchTerm$.next($event)">
+    <ion-option  value="pagamentoAberto">Aberto</ion-option>
+    <ion-option value="pago">Fechado</ion-option>
+  </ion-select>
+  <ion-item (click)="navigateToAtendimento(order._id)" *ngFor="let order of orders" >
+    <div [ngStyle]="{'background-color':order.pagamento === 'pagamentoAberto' ? 'blue' : 'white',
+    'color':order.pagamento === 'pagamentoAberto' ? 'white' : 'black' }">
+      <ion-list >
+
+          <h2> <b>Pedido:</b>  {{order?.numberOrder}}</h2>
+          <h3>  <b> Mesa: {{order.orders[1]?.mesa}}
+
+              {{order.orders[2]?.mesa}}
+              {{order.orders[3]?.mesa}}
+              {{order.orders[4]?.mesa}}
+              {{order.orders[5]?.mesa}}
+              {{order.orders[6]?.mesa}}
+              {{order.orders[7]?.mesa}}
+              {{order.orders[8]?.mesa}}
+              {{order.orders[9]?.mesa}}
+              {{order.orders[10]?.mesa}}
+              {{order.orders[11]?.mesa}}
+              {{order.orders[12]?.mesa}}
+              {{order.orders[13]?.mesa}}
+              {{order.orders[14]?.mesa}}
+              {{order.orders[15]?.mesa}}
+              {{order.orders[16]?.mesa}}
+              {{order.orders[17]?.mesa}}
+              {{order.orders[18]?.mesa}}
+              {{order.orders[19]?.mesa}}
+              {{order.orders[20]?.mesa}}
+              {{order.orders[21]?.mesa}}
+              {{order.orders[22]?.mesa}}
+              {{order.orders[23]?.mesa}}
+              {{order.orders[24]?.mesa}}
+
+            </b> <br/></h3>
+            Nome do cliente: {{order.orders[1]?.clientName}}
+            {{order.orders[2]?.clientName}}
+              {{order.orders[3]?.clientName}}
+              {{order.orders[4]?.clientName}}
+              {{order.orders[5]?.clientName}}
+              {{order.orders[6]?.clientName}}
+              {{order.orders[7]?.clientName}}
+              {{order.orders[8]?.clientName}}
+              {{order.orders[9]?.clientName}}
+      </ion-list >
+    </div>
+      <!-- <ion-list>
+          <h2>   {{i?.orders[1]?.product.title}}</h2>
+     <h3>  {{i?.orders[1]?.quantity}}</h3>
+
+      </ion-list>
+
+      {{i?.orders[2]?.quantity}}
+      {{i?.orders[2]?.product.title}}
+    {{i?.orders?.quantity}}
+    <h3> {{order?.quantity}}</h3> -->
+
+
+    </ion-item>
+</ion-grid>
+</ion-content>
