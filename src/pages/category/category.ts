@@ -38,7 +38,8 @@ export class CategoryPage {
    this.form = this.formBuilder.group ({
     files: [null, Validators.required],
       title:['', Validators.required],
-      description:['', Validators.required]
+      description:['', Validators.required],
+      tipoPizza: ['']
     })
   }
   fileChangeEvent(event: any) {
@@ -54,7 +55,7 @@ export class CategoryPage {
     formData.append('files[]', this.form.get('files').value);
     formData.append('title', this.form.get('title').value);
     formData.append('description', this.form.get('description').value);
-
+    formData.append('tipoPizza', this.form.get('tipoPizza').value)
 
     this.categoryProvider.addCategory(formData).subscribe((data)=>{
       this.getCategories();

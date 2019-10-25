@@ -1,15 +1,20 @@
-
-
 <ion-content padding>
-
-
-        <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-
-
-  <img src="./../../assets/imgs/mister-burguer-home.jpg">
-
+  <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+  <div class="wrapper">
+    <header>
+      <img src="../../assets/imgs/f-logo.png" />
+    </header>
+    <div class="pedido" *ngFor="let content of contents" (click)="openPage(content)">
+      <img [src]="content.img" />
+      <ion-card>
+        <ion-item class="title-item">
+          <button>
+            <h1>{{content.title}}</h1>
+          </button>
+        </ion-item>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>
-
-

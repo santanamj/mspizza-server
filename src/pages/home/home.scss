@@ -3,6 +3,10 @@ page-home {
   .scroll-content{
     padding: 0px 0px !important;
   }
+  button{
+    background: none;
+  }
+  .wrapper{ background-color: map-get($colors, bgcolor) !important; }
   .button-md{
     position: absolute;
     height: 4.6rem;
@@ -10,4 +14,43 @@ page-home {
     margin: 1.4rem 2.2rem;
     background-color: #6f1607;
   }
+  ion-img{
+    width: 100%;
+    display: contents;
+  }
+  ion-card img {
+    display: block;
+    width: 100px;
+    float: left;
+}
+.card-md{
+  border-radius: 25px;
+    width: 75%;
+    position: absolute;
+    top: 18px;
+    height: 60px;
+}
+  .pedido{
+    display: block;
+    position: relative;
+    padding: 10px 40px 10px;
+  }
+  .pedido img{
+   width: 100px;
+   position: relative;
+   z-index: 2;
+  }
+  .item-md h1{
+    text-align: center;
+    margin-left: 4em;
+    position: relative;
+    top: 6px;
+  }
+  .title-item{   
+    float: right
+  }
+  
+  
+ 
+ 
 }

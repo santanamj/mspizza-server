@@ -30,21 +30,23 @@
 
 <ion-content padding>
   <ion-item >
-      <form [formGroup]="form" name="CreateNewProduct" (ngSubmit)="addProduct()">
+      <form [formGroup]="form" name="CreateNewProduct"   (ngSubmit)="addProductToCart(product, 1)">
     <div >
       <ion-item formArrayName="sabores" *ngFor="let sub of form.controls.sabores.controls; let i = index">
         
-        <ion-checkbox type="checkbox" (ionChange)="select(i)" [formControlName]="i" ([ngModel])="productscar[i].checked" ></ion-checkbox>
+        <ion-checkbox type="checkbox" (ionChange)="select(i)" [formControlName]="i" ([ngModel])="productscar[i].checked" mode="ios" ></ion-checkbox>
         <ion-label>{{productscar[i].title}}</ion-label>
       </ion-item>
     </div>
+   
+    <ion-col col-2>
+      <button  ion-button round class="bt-clear" [disabled]="myquantity == false">Adicionar</button> 
+    
+      </ion-col>
   </form>
 
     <ion-row>
-      <ion-col col-2>
-
-    <ion-icon name="add-circle" class="add" (click)="addProductToCart(product, 1)"></ion-icon>
-     </ion-col>
+     
 
 
      <ion-col col-2>

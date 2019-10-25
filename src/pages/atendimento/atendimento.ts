@@ -12,7 +12,7 @@ import * as io from 'socket.io-client';
 import { Subscription } from 'rxjs/Subscription';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { ShoppingCartProvider } from '../../providers/shopping-cart/shopping-cart';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import * as moment from 'moment';
 import { AtendimentoDetailPage } from './atendimento-detail/atendimento-detail';
 
@@ -38,12 +38,65 @@ export class AtendimentoPage {
   mySearch$;
   types;
   statusOrder;
+  mesa;
+  mesaForm: FormGroup;
+  selectTitle: any[];
+  mesas = [
+    {title: "Mesa 01",
+     value: '1' 
+  },
+  {
+    title: "mesa 02",
+    value: '2'
+  },
+  {
+    title: "mesa 03",
+    value: '3'
+  },
+  {
+    title: "mesa 04",
+    value: '4'
+  },
+  {
+    title: "mesa 05",
+    value: '5'
+  },
+  {
+    title: "mesa 06",
+    value: '6'
+  },
+  {
+    title: "mesa 07",
+    value: '7'
+  },
+  {
+    title: "mesa 08",
+    value: '8'
+  },
+  {
+    title: "mesa 09",
+    value: '9'
+  },
+  {
+    title: "mesa 10",
+    value: '10'
+  },
+  {
+    title: "mesa 11",
+    value: '11'
+  },
+  {
+    title: "mesa 12",
+    value: '12'
+  }
+  ]
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private orderProvider: OrderProvider,
     private authProvider: AuthProvider,
-    private shopService: ShoppingCartProvider
+    private shopService: ShoppingCartProvider,
+    private fb: FormBuilder
   ) {
     const dateYear = moment().toDate();
     dateYear.setFullYear(dateYear.getFullYear());
@@ -53,16 +106,21 @@ export class AtendimentoPage {
     dateDay.setDate(dateDay.getDay() - 1);
     const dateHours = moment().toDate();
     dateHours.setHours(14);
+  
      this.orderProvider.search(this.searchTerm$)
     .subscribe(results => {
      this.orders = results;
      console.log(this.orders)
    });
+   const formControls = this.mesas.map(control => new FormControl());
+ 
+   // Simply add the list of FormControls to the FormGroup as a FormArray, add the selectAllControl separetely
+   this.mesaForm = this.fb.group({
+     mesas: new FormArray(formControls)
+   });
   }
-  changeStatus(value){
-    console.log(value);
-    this.statusOrder.type=value;
-  }
+
+ 
   contador(){
     this.counter = this.counter + 1;
     this.valueChange.emit(this.counter);
@@ -92,6 +150,7 @@ export class AtendimentoPage {
      this.orders = this.result;
   });
    }
+   
    clearOrder(){
     this.orderProvider.getOrder().subscribe(data => {
       this.result = data;

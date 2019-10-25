@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray, ValidatorFn } from '@angular/forms';
 import { Product } from '../../../model/product';
 import { ShoppingCartProvider } from '../../../providers/shopping-cart/shopping-cart';
 import { ProductProvider } from '../../../providers/product/product';
@@ -10,6 +10,7 @@ import { Observable } from "rxjs/Observable";
 import { Observer } from "rxjs/Observer";
 import { ShoppingCart } from '../../../model/shopping-cart';
 import { Subscription } from "rxjs/Subscription";
+import {requireCheckboxesToBeCheckedValidator} from './require-checkboxes-to-be-checked.validator';
 @IonicPage()
 @Component({
   selector: 'page-product-detail',
@@ -29,6 +30,7 @@ export class ProductDetailPage {
   selectTitle: any[];
   prodprice;
   Titlesabores;
+  myquantity = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -38,6 +40,7 @@ export class ProductDetailPage {
     private formBuilder: FormBuilder,
     public viewCtrl: ViewController
   ) {
+    this.countProd();
     this.product = this.navParams.data.product;
     this.form = this.formBuilder.group({
       files: [null, Validators.required],
@@ -57,7 +60,7 @@ export class ProductDetailPage {
         const control = new FormControl(); // if first item set to true, else false
         (this.form.controls.sabores as FormArray).push(control);
       });
-      console.log(this.form.controls.orders as FormArray)
+     
     })
     this.saboresChecked = [];
     
@@ -70,6 +73,7 @@ export class ProductDetailPage {
          this.prodprice = selectedPreferences.reduce(function(anterior, atual){
           return anterior + atual;
         }, 0)
+      
       console.log(this.prodprice);
        // Select title of product
       this.selectTitle =
@@ -80,7 +84,18 @@ export class ProductDetailPage {
        this.Titlesabores = this.selectTitle.map((item, index, array)=>{
         return {'title': item}
        })
-    }
+       console.log('teste', (this.selectTitle).length)
+       if((this.selectTitle).length == 2){
+        this.myquantity = true
+      }else{
+        this.myquantity = false
+      }
+      console.log(this.myquantity)
+      }
+      countProd(){
+        
+       
+      }
   public emptyCart(): void {
     this.shoppingCartProvider.empty();
   }
@@ -96,6 +111,8 @@ export class ProductDetailPage {
       } 
         
       this.shoppingCartProvider.addItem(product, 1);
+      this.form.reset();
+      (this.selectTitle).length == 0;
     }
 
     public removeProductFromCart(product: Product): void {

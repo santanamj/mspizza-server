@@ -35,6 +35,7 @@ export class CheckoutPage implements OnInit, OnDestroy {
   message;
   username;
   form;
+  totalCart;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -46,6 +47,7 @@ export class CheckoutPage implements OnInit, OnDestroy {
     private formBuilder: FormBuilder
   ) {
     this.createMoreOrder();
+   
    }
    createMoreOrder(){
      this.form = this.formBuilder.group({
@@ -84,6 +86,7 @@ export class CheckoutPage implements OnInit, OnDestroy {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.productProvider.getProducts().subscribe((products) => {
         this.products = products;
+        this.totalCart = cart.grossTotal;
         this.cartItems = cart.items
           .map((item) => {
             const product = this.products.find((p) => p._id === item.title);
@@ -102,7 +105,7 @@ export class CheckoutPage implements OnInit, OnDestroy {
       mesa: this.form.get('mesa').value,
       obs: this.form.get('obs').value,
       clientName: this.form.get('clientName').value,
-      totalCart: this.form.get('totalCart').value
+      totalCart: this.totalCart
     }
     const order = this.cartItems;
     console.log(order);
